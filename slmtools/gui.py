@@ -35,7 +35,9 @@ from slmtools import (load_background, merge_hologram_bits, save_background,
                       version)
 """SLM - spatial light modulator (SLM) controller.
 """
-
+SLM_HEIGTH=600
+SLM_WIDTH=792
+PUPIL_RADIUS=SLM_HEIGTH/2
 
 class MyQDoubleValidator(QDoubleValidator):
 
@@ -82,7 +84,7 @@ class Pupil():
         'enabled': 1,
         'zernike_labels': {},
         'xy': [0.0, 0.0],
-        'rho': 50.0,
+        'rho': PUPIL_RADIUS,
         'angle_xy': [0.0, 0.0],
         'aberration': np.zeros((15, 1)),
         'mask2d_on': 0,
@@ -385,7 +387,7 @@ class Hologram(QDialog):
 
         self.setWindowTitle('SLM Hologram')
 
-        self.hologram_geometry = [0, 0, 400, 200]
+        self.hologram_geometry = [0, 0, SLM_WIDTH, SLM_HEIGTH]
         self.pupils = []
         self.grating_coeffs = [0.0, 0.0]
         self.grating = None
@@ -554,9 +556,13 @@ class Hologram(QDialog):
             self.wrap_value = wrap_value
         self.refresh_hologram()
 
-    def set_flat_on(self, on):
-        self.flat_on = on
-        self.refresh_hologram()
+    def set_flat_toggle(self, off):
+        self.flat_on = not self.flat_on
+        if self.flat_on is False:
+            self.reset_flat()
+        else:
+            self.refresh_hologram()
+
 
     def make_grating(self):
         Ny = self.hologram_geometry[3]
@@ -2426,14 +2432,15 @@ class SLMWindow(QMainWindow):
                     filter='Images (*.bmp *.png);;All Files (*)')
                 if fdiag:
                     self.slm.set_flat(fdiag)
-
+                    slm.flat_on=True
+                    cboxlf.setChecked(self.slm.flat_on)
             return myf1
 
         g = QGroupBox('Flattening')
         l1 = QGridLayout()
-        cboxlf = QCheckBox('on')
+        cboxlf = QCheckBox('Flat')
         cboxlf.toggled.connect(
-            self.helper_boolupdate(self.slm.set_flat_on, self.slm.update))
+            self.helper_boolupdate(self.slm.set_flat_toggle, self.slm.update))
         cboxlf.setChecked(self.slm.flat_on)
         l1.addWidget(cboxlf, 0, 0)
         loadbut = QPushButton('load')
