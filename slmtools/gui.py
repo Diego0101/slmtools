@@ -556,13 +556,11 @@ class Hologram(QDialog):
             self.wrap_value = wrap_value
         self.refresh_hologram()
 
-    def set_flat_toggle(self, off):
-        self.flat_on = not self.flat_on
+    def set_flat_toggle(self, on):
         if self.flat_on is False:
             self.reset_flat()
-        else:
-            self.refresh_hologram()
-
+        self.refresh_hologram()
+        self.flat_on = not self.flat_on
 
     def make_grating(self):
         Ny = self.hologram_geometry[3]
@@ -2431,17 +2429,18 @@ class SLMWindow(QMainWindow):
                     'Select a flat file',
                     filter='Images (*.bmp *.png);;All Files (*)')
                 if fdiag:
+                    slm.flat_on = True
                     self.slm.set_flat(fdiag)
-                    slm.flat_on=True
                     cboxlf.setChecked(self.slm.flat_on)
             return myf1
 
         g = QGroupBox('Flattening')
         l1 = QGridLayout()
         cboxlf = QCheckBox('Flat')
+
         cboxlf.toggled.connect(
             self.helper_boolupdate(self.slm.set_flat_toggle, self.slm.update))
-        cboxlf.setChecked(self.slm.flat_on)
+
         l1.addWidget(cboxlf, 0, 0)
         loadbut = QPushButton('load')
         loadbut.clicked.connect(helper_load_flat1())
