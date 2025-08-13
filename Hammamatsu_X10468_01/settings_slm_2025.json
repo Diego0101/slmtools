@@ -1,0 +1,85 @@
+{
+    "controlwindow": {
+        "geometry": [
+            -57,
+            180,
+            1280,
+            720
+        ]
+    },
+    "slm": {
+        "flat_file": "C:/Users/alioli/AppData/Roaming/Python/Python38/site-packages/slmtools/CAL_LSH0600651_633nm.bmp",
+        "flat_on": true,
+        "grating_coeffs": [
+            0.0,
+            0.0
+        ],
+        "hologram_geometry": [
+            1920,
+            0,
+            792,
+            600
+        ],
+        "pupils": [
+            {
+                "aberration": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "align_grid_on": false,
+                "align_grid_pitch": 16,
+                "angle_xy": [
+                    0.0,
+                    0.0
+                ],
+                "enabled": 1,
+                "flipx": 1,
+                "flipy": 1,
+                "mask2d_mul": 1.0,
+                "mask2d_on": false,
+                "mask2d_sign": 1.0,
+                "mask3d_height": 1.0,
+                "mask3d_on": false,
+                "mask3d_radius": 0.63,
+                "name": "pupil",
+                "rho": 164.0,
+                "rotate": -88.0,
+                "xy": [
+                    -20.0,
+                    22.0
+                ],
+                "zernike_labels": {
+                    "0": "piston",
+                    "1": "tip",
+                    "10": "spherical",
+                    "11": "astigmatism",
+                    "12": "astigmatism",
+                    "13": "quadrafoil",
+                    "14": "quadrafoil",
+                    "2": "tilt",
+                    "3": "defocus",
+                    "4": "astigmatism",
+                    "5": "astigmatism",
+                    "6": "coma",
+                    "7": "coma",
+                    "8": "trefoil",
+                    "9": "trefoil"
+                }
+            }
+        ],
+        "wrap_value": 255
+    }
+}
