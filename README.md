@@ -1,4 +1,4 @@
-# Aztec Curve
+# SLM TOOLS
 ## Description
 A Python Python code to use a spatial light modulator (SLM). Can run in Windows and also in Linux.
 *Author(s): Diego Ayala (https://github.com/Diego0101)* 
@@ -25,7 +25,8 @@ To start up the GUI, open `Anaconda Prompt`, type `python -m slmtools.gui` and
 hit enter.
 
 OR run gui.py, no arguments needed.
-
+* It may prompt error of numpy, wayland or matplob lib, . It may be solved with:
+`pip install --upgrade numpy matplotlib` 
 ## Installation from the GitHub repository
 
 To install `slmtools` in Windows, follow the steps below.
